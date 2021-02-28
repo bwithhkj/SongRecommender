@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+<h1>POPULAR SONGS LIST</h1>
+{% block head %}
+<title>Popular Songs recommendation</title>
+{% endblock %}
+
+{% block body %}
+<h1>SONGS RECOMMENDER</h1>
+<div class="content">
+    <br>
+    <table>
+        <tr>
+            <th>User id </th>
+            <th>Addedd</th>
+        </tr>
+        <tr>
+            <th>User id </th>
+            <th>Added</th>
+        </tr>
+    </table>
+
+    <form action="/popular" method="POST">
+        <input type="text" name="userid" id="song">
+        <input type="submit" value="Get Recommendations">
+    </form>
+<br>
+    <form action="/similarsongs" method="POST">
+        <input type="text" name="song" id="song">
+        <input type="submit" value="Get Recommendations based on songs">
+    </form>
+<br>
+    <form action="/basedonyou" method="POST">
+        <input type="text" name="song1" id="song1">
+        <input type="text" name="song2" id="song2">
+        <input type="text" name="song3" id="song3">
+        <input type="text" name="song4" id="song4">
+        <input type="text" name="song5" id="song5">
+        <input type="submit" value="Get Recommendations based on your recent activities">
+    </form>
+
+</div>
+
+ {{ output2 }}
+{% endblock %}
