@@ -83,9 +83,7 @@ class item_similarity_recommender_py():
     #Get unique items (songs) in the training data
     #nep: sabai items (geet) haru
     def get_all_items_train_data(self):
-        all_items = list(self.train_data[self.item_id].unique())
-            
-        return all_items
+        return list(self.train_data[self.item_id].unique())
 
         #aba hami sange k k cha: user le suneko geet ko aru users ani all songs
         
@@ -95,9 +93,9 @@ class item_similarity_recommender_py():
         ####################################
         #Get users for all songs in user_songs.
         ####################################
-        user_songs_users = []        
-        for i in range(0, len(user_songs)):
-            user_songs_users.append(self.get_item_users(user_songs[i]))
+        user_songs_users = [
+            self.get_item_users(user_songs[i]) for i in range(len(user_songs))
+        ]
             
         ###############################################
         #Initialize the item cooccurence matrix of size 
@@ -109,12 +107,12 @@ class item_similarity_recommender_py():
         #Calculate similarity between user songs and all unique songs
         #in the training data
         #############################################################
-        for i in range(0,len(all_songs)):
+        for i in range(len(all_songs)):
             #Calculate unique listeners (users) of song (item) i
             songs_i_data = self.train_data[self.train_data[self.item_id] == all_songs[i]]
             users_i = set(songs_i_data[self.user_id].unique())
             
-            for j in range(0,len(user_songs)):       
+            for j in range(len(user_songs)):       
                     
                 #Get unique listeners (users) of song (item) j
                 users_j = user_songs_users[j]
